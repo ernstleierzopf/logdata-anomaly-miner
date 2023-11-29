@@ -6,6 +6,38 @@ from unit.TestBase import TestBase
 class JsonUtilTest(TestBase):
     """Unittests for the JsonUtil class."""
 
+    def test1encode_object(self):
+        """Encode different types of objects."""
+
+    def test2decode_object(self):
+        """Decode different types of encoded objects."""
+
+    def test3encode_object_decode_object(self):
+        """Test if encoding and decoding the same data objects works as expected."""
+
+    def test4dump_as_json(self):
+        """Test if encoded objects can be dumped as json."""
+
+    def test5load_json(self):
+        """Test if json objects can be loaded and decoded."""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     def test1encode_decode_strings2_json(self):
         """This test method encodes/decodes string objects into/from the JSON-format."""
         s = 'this is a normal string to be serialized'

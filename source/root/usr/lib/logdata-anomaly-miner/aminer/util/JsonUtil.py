@@ -25,7 +25,7 @@ def dump_as_json(input_object):
 
 
 def load_json(input_string):
-    """Load an string encoded as object structure."""
+    """Load a string encoded as object structure."""
     return decode_object(json.loads(input_string))
 
 
