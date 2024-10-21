@@ -13,10 +13,10 @@ this program. If not, see <http://www.gnu.org/licenses/>.
 
 import sys
 import logging
-from aminer.AminerConfig import DEBUG_LOG_NAME
-from aminer.events.EventInterfaces import EventHandlerInterface
 import zmq
 import time
+from aminer.AminerConfig import DEBUG_LOG_NAME
+from aminer.events.EventInterfaces import EventHandlerInterface
 
 
 class ZmqEventHandler(EventHandlerInterface):
@@ -80,6 +80,10 @@ class ZmqEventHandler(EventHandlerInterface):
             logging.getLogger(DEBUG_LOG_NAME).warning(msg)
             print('WARNING: ' + msg, file=sys.stderr)
             return False
+        if isinstance(event_data, str):
+            event_data += '\n'
+        else:
+            event_data += b'\n'
         try:
             if self.topic:
                 self.producer.send_string(self.topic, flags=zmq.SNDMORE)
