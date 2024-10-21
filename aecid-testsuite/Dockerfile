@@ -37,7 +37,6 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-tz \
     python3-scipy \
-    python3-pkg-resources \
     python3-setuptools \
     python3-dateutil \
     python3-six \
@@ -104,7 +103,6 @@ RUN ln -s /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py /usr/bin/aminerr
 	&& ln -s /usr/lib/python3/dist-packages/cerberus /etc/aminer/conf-enabled/cerberus \
 	&& ln -s /usr/lib/python3/dist-packages/scipy /etc/aminer/conf-enabled/scipy \
 	&& ln -s /usr/lib/python3/dist-packages/numpy /etc/aminer/conf-enabled/numpy \
-	&& ln -s /usr/lib/python3/dist-packages/pkg_resources /etc/aminer/conf-enabled/pkg_resources \
 	&& ln -s /usr/lib/python3/dist-packages/yaml /etc/aminer/conf-enabled/yaml \
 	&& ln -s /usr/lib/python3/dist-packages/pytz /etc/aminer/conf-enabled/pytz \
 	&& ln -s /usr/lib/python3/dist-packages/dateutil /etc/aminer/conf-enabled/dateutil \
