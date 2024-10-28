@@ -41,7 +41,6 @@ RUN apt-get update && apt-get install -y \
     python3-dateutil \
     python3-six \
     python3-kafka \
-    python3-cerberus \
     python3-yaml \
     python3-pylibacl \
     python3-urllib3 \
@@ -100,7 +99,6 @@ RUN ln -s /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py /usr/bin/aminerr
 	&& chmod 0755 /usr/lib/logdata-anomaly-miner/aminer.py  \
 	&& chmod 0755 /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py \
 	&& ln -s /usr/lib/python3/dist-packages/kafka /etc/aminer/conf-enabled/kafka \
-	&& ln -s /usr/lib/python3/dist-packages/cerberus /etc/aminer/conf-enabled/cerberus \
 	&& ln -s /usr/lib/python3/dist-packages/scipy /etc/aminer/conf-enabled/scipy \
 	&& ln -s /usr/lib/python3/dist-packages/numpy /etc/aminer/conf-enabled/numpy \
 	&& ln -s /usr/lib/python3/dist-packages/yaml /etc/aminer/conf-enabled/yaml \
@@ -137,7 +135,7 @@ ADD scripts/testingwrapper.sh /testingwrapper.sh
 ADD source /home/aminer/source
 ADD docs /home/aminer/docs
 
-RUN pip3 install orjson flake8 pycodestyle vulture
+RUN pip3 install orjson flake8 pycodestyle vulture cerberus
 RUN PACK=$(find /usr/local/lib/ -name orjson.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
 
 USER aminer
