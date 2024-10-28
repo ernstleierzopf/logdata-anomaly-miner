@@ -137,7 +137,7 @@ ADD docs /home/aminer/docs
 
 RUN pip3 install orjson flake8 pycodestyle vulture cerberus
 RUN PACK=$(find /usr/local/lib/ -name orjson.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
-RUN ln -s /usr/lib/python3/dist-packages/cerberus /usr/lib/logdata-anomaly-miner/cerberus
+RUN PACK=$(find /usr/local/lib/ -name cerberus) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
 
 USER aminer
 WORKDIR /home/aminer/aecid-testsuite
