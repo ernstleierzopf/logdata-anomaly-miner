@@ -104,8 +104,8 @@ RUN ln -s /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py /usr/bin/aminerr
 RUN PACK=$(find /usr/lib/python3/dist-packages -name posix1e.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
 
 RUN pip3 install orjson cerberus
-RUN PACK=$(find /usr/local/lib/ -name orjson.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
-RUN PACK=$(find /usr/local/lib/ -name cerberus) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
+RUN PACK=$(find /usr/local/lib/ -name orjson.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /etc/aminer/conf-enabled/$FILE
+RUN PACK=$(find /usr/local/lib/ -name cerberus) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /etc/aminer/conf-enabled/$FILE
 
 
 # Prepare Supervisord
