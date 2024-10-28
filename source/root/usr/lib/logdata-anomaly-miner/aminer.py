@@ -530,7 +530,7 @@ def main():
         elif url.startswith(b'unix://'):
             obj["log_resource"] = UnixSocketLogDataResource(url, -1)
         else:
-            msg = f"Unsupported schema in {AminerConfig.KEY_LOG_SOURCES_LIST}: {repr(obj)}"
+            msg = "Config-Error: {'LogResourceList': 'Every log resource URL must be prefixed with either file:// or unix://.'}"
             print(msg, file=sys.stderr)
             logging.getLogger(AminerConfig.DEBUG_LOG_NAME).error(msg)
             sys.exit(1)
