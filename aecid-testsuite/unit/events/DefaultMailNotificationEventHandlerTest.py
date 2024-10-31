@@ -141,7 +141,7 @@ class DefaultMailNotificationEventHandlerTest(TestBase):
         acp[d.CONFIG_KEY_MAIL_FROM_ADDRESS] = "test123@gmail.com"
         acp[d.CONFIG_KEY_MAIL_SUBJECT_PREFIX] = "test prefix"
         acp[d.CONFIG_KEY_MAIL_ALERT_GRACE_TIME] = 0
-        acp[d.CONFIG_KEY_EVENT_COLLECT_TIME] = 1
+        acp[d.CONFIG_KEY_EVENT_COLLECT_TIME] = 0
         acp[d.CONFIG_KEY_ALERT_MIN_GAP] = 0
         acp[d.CONFIG_KEY_ALERT_MAX_GAP] = 600
         acp[d.CONFIG_KEY_ALERT_MAX_EVENTS_PER_MESSAGE] = 1
@@ -207,7 +207,7 @@ class DefaultMailNotificationEventHandlerTest(TestBase):
         self.assertRaises(TypeError, d, ac)
         acp[d.CONFIG_KEY_EVENT_COLLECT_TIME] = None
         self.assertRaises(TypeError, d, ac)
-        acp[d.CONFIG_KEY_EVENT_COLLECT_TIME] = 0
+        acp[d.CONFIG_KEY_EVENT_COLLECT_TIME] = -1
         self.assertRaises(ValueError, d, ac)
         acp[d.CONFIG_KEY_EVENT_COLLECT_TIME] = 123
         DefaultMailNotificationEventHandler(ac)

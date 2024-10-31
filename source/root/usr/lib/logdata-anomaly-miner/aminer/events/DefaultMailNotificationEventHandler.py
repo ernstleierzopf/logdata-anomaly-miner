@@ -78,7 +78,7 @@ class DefaultMailNotificationEventHandler(EventHandlerInterface, TimeTriggeredCo
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         if self.alert_grace_time_end < 0:
-            msg = "MailAlerting.AlertGraceTime must not be smaller than zero!"
+            msg = "MailAlerting.AlertGraceTime must be greater than zero!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise ValueError(msg)
         self.alert_grace_time_end += time.time()
@@ -88,8 +88,8 @@ class DefaultMailNotificationEventHandler(EventHandlerInterface, TimeTriggeredCo
             msg = "MailAlerting.EventCollectTime must be of type int or float!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
-        if self.event_collect_time < 1:
-            msg = "MailAlerting.EventCollectTime must be at least one second!"
+        if self.event_collect_time < 0:
+            msg = "MailAlerting.EventCollectTime must be greater than zero!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise ValueError(msg)
 
