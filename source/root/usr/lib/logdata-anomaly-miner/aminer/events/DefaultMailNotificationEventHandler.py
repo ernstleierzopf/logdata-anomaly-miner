@@ -81,7 +81,8 @@ class DefaultMailNotificationEventHandler(EventHandlerInterface, TimeTriggeredCo
             msg = "MailAlerting.AlertGraceTime must be greater than zero!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise ValueError(msg)
-        self.alert_grace_time_end += time.time()
+        if self.alert_grace_time_end > 0:
+            self.alert_grace_time_end += time.time()
 
         self.event_collect_time = cp.get(handler.CONFIG_KEY_EVENT_COLLECT_TIME, 10)
         if isinstance(self.event_collect_time, bool) or not isinstance(self.event_collect_time, (int, float)):
