@@ -33,13 +33,11 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-tz \
     python3-scipy \
-    python3-pkg-resources \
     python3-setuptools \
     python3-dateutil \
     python3-six \
     python3-scipy \
     python3-kafka \
-    python3-cerberus \
     python3-yaml \
     python3-pylibacl \
     python3-urllib3 \
@@ -86,10 +84,8 @@ RUN ln -s /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py /usr/bin/aminerr
 	&& chmod 0755 /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py \
 	&& chmod 0755 /etc/aminer \
 	&& ln -s /usr/lib/python3/dist-packages/kafka /usr/lib/logdata-anomaly-miner/kafka \
-	&& ln -s /usr/lib/python3/dist-packages/cerberus /usr/lib/logdata-anomaly-miner/cerberus \
 	&& ln -s /usr/lib/python3/dist-packages/scipy /usr/lib/logdata-anomaly-miner/scipy \
 	&& ln -s /usr/lib/python3/dist-packages/numpy /usr/lib/logdata-anomaly-miner/numpy \
-	&& ln -s /usr/lib/python3/dist-packages/pkg_resources /usr/lib/logdata-anomaly-miner/pkg_resources \
 	&& ln -s /usr/lib/python3/dist-packages/yaml /usr/lib/logdata-anomaly-miner/yaml \
 	&& ln -s /usr/lib/python3/dist-packages/pytz /usr/lib/logdata-anomaly-miner/pytz \
 	&& ln -s /usr/lib/python3/dist-packages/dateutil /usr/lib/logdata-anomaly-miner/dateutil \
@@ -107,8 +103,9 @@ RUN ln -s /usr/lib/logdata-anomaly-miner/aminerremotecontrol.py /usr/bin/aminerr
 
 RUN PACK=$(find /usr/lib/python3/dist-packages -name posix1e.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
 
-RUN pip3 install orjson
-RUN PACK=$(find /usr/local/lib/ -name orjson.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /usr/lib/logdata-anomaly-miner/$FILE
+RUN pip3 install orjson cerberus
+RUN PACK=$(find /usr/local/lib/ -name orjson.cpython\*.so) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /etc/aminer/conf-enabled/$FILE
+RUN PACK=$(find /usr/local/lib/ -name cerberus) && FILE=$(echo $PACK | awk -F '/' '{print $NF}') ln -s $PACK /etc/aminer/conf-enabled/$FILE
 
 
 # Prepare Supervisord
