@@ -67,7 +67,6 @@ class StreamPrinterEventHandlerTest(TestBase):
         self.assertTrue(self.stream_printer_event_handler.receive_event(test % self.__class__.__name__, new_val, [log_atom.raw_data, log_atom.raw_data], None, log_atom, self))
         self.assertEqual(self.output_stream.getvalue(), exp % (dt, match_s1 + ", " + match_s2, "b' pid='", self.__class__.__name__, description, 2, "   pid=\n   pid=\n"))
 
-
     def test2validate_parameters(self):
         """Test all initialization parameters for the event handler. Input parameters must be validated in the class."""
         self.assertRaises(TypeError, StreamPrinterEventHandler, self.analysis_context, "")
@@ -83,7 +82,6 @@ class StreamPrinterEventHandlerTest(TestBase):
         StreamPrinterEventHandler(self.analysis_context, sys.stdout)
         StreamPrinterEventHandler(self.analysis_context, sys.stderr)
         StreamPrinterEventHandler(self.analysis_context, self.output_stream)
-
 
 
 if __name__ == "__main__":
