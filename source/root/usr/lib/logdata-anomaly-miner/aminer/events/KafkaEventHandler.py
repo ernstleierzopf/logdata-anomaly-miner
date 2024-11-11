@@ -30,6 +30,18 @@ class KafkaEventHandler(EventHandlerInterface):
         """
         self.analysis_context = analysis_context
         self.options = options
+        if not isinstance(options, dict) or any(not isinstance(x, str) for x in options.keys()):
+            msg = "options has to be a dictionary with string keys."
+            logging.getLogger(DEBUG_LOG_NAME).error(msg)
+            raise TypeError(msg)
+        if not isinstance(topic, str):
+            msg = "topic has to be of the type string."
+            logging.getLogger(DEBUG_LOG_NAME).error(msg)
+            raise TypeError(msg)
+        if topic is not None and len(topic) == 0:
+            msg = "topic must not be empty."
+            logging.getLogger(DEBUG_LOG_NAME).error(msg)
+            raise ValueError(msg)
         self.topic = topic
         self.producer = None
         self.kafka_imported = False
@@ -47,7 +59,7 @@ class KafkaEventHandler(EventHandlerInterface):
         @param _log_atom the log atom which produced the event.
         @param event_source reference to detector generating the event.
         """
-        if hasattr(event_source, 'output_event_handlers') and event_source.output_event_handlers is not None and self not in \
+        if hasattr(event_source, "output_event_handlers") and event_source.output_event_handlers is not None and self not in \
                 event_source.output_event_handlers:
             return True
         component_name = self.analysis_context.get_name_by_component(event_source)
@@ -60,14 +72,14 @@ class KafkaEventHandler(EventHandlerInterface):
                 self.producer = KafkaProducer(**self.options, value_serializer=lambda v: v.encode())
                 self.kafka_imported = True
             except ImportError:
-                msg = 'Kafka module not found.'
+                msg = "Kafka module not found."
                 logging.getLogger(DEBUG_LOG_NAME).error(msg)
-                print('ERROR: ' + msg, file=sys.stderr)
+                print("ERROR: " + msg, file=sys.stderr)
                 return False
         if not isinstance(event_data, str) and not isinstance(event_data, bytes):
-            msg = 'KafkaEventHandler received non-string event data. Use the JsonConverterHandler to serialize it first.'
+            msg = "KafkaEventHandler received non-string event data. Use the JsonConverterHandler to serialize it first."
             logging.getLogger(DEBUG_LOG_NAME).warning(msg)
-            print('WARNING: ' + msg, file=sys.stderr)
+            print("WARNING: " + msg, file=sys.stderr)
             return False
         try:
             self.producer.send(self.topic, event_data)
