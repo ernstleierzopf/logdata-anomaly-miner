@@ -69,21 +69,21 @@ class ZmqEventHandler(EventHandlerInterface):
         @param _log_atom the log atom which produced the event.
         @param event_source reference to detector generating the event.
         """
-        if hasattr(event_source, 'output_event_handlers') and event_source.output_event_handlers is not None and self not in \
+        if hasattr(event_source, "output_event_handlers") and event_source.output_event_handlers is not None and self not in \
                 event_source.output_event_handlers:
             return True
         component_name = self.analysis_context.get_name_by_component(event_source)
         if component_name in self.analysis_context.suppress_detector_list:
             return True
         if not isinstance(event_data, str) and not isinstance(event_data, bytes):
-            msg = 'ZmqEventHandler received non-string event data. Use the JsonConverterHandler to serialize it first.'
+            msg = "ZmqEventHandler received non-string event data. Use the JsonConverterHandler to serialize it first."
             logging.getLogger(DEBUG_LOG_NAME).warning(msg)
-            print('WARNING: ' + msg, file=sys.stderr)
+            print("WARNING: " + msg, file=sys.stderr)
             return False
         if isinstance(event_data, str):
-            event_data += '\n'
+            event_data += "\n"
         else:
-            event_data += b'\n'
+            event_data += b"\n"
         try:
             if self.topic:
                 self.producer.send_string(self.topic, flags=zmq.SNDMORE)
