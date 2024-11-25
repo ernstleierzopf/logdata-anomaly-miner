@@ -30,7 +30,7 @@ class LogAtom:
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise ValueError(msg)
         self.raw_data = raw_data
-        if not isinstance(parser_match, ParserMatch):
+        if parser_match is not None and not isinstance(parser_match, ParserMatch):
             msg = "parser_match must be of type ParserMatch."
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)

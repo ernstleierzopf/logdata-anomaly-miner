@@ -31,7 +31,6 @@ class LogAtomTest(TestBase):
 
         self.assertRaises(TypeError, LogAtom, fdme.data, "", 1, self)
         self.assertRaises(TypeError, LogAtom, fdme.data, ["default"], 1, self)
-        self.assertRaises(TypeError, LogAtom, fdme.data, None, 1, self)
         self.assertRaises(TypeError, LogAtom, fdme.data, True, 1, self)
         self.assertRaises(TypeError, LogAtom, fdme.data, 123, 1, self)
         self.assertRaises(TypeError, LogAtom, fdme.data, 123.3, 1, self)
@@ -47,7 +46,7 @@ class LogAtomTest(TestBase):
         self.assertRaises(TypeError, LogAtom, fdme.data, pm, (), self)
         self.assertRaises(TypeError, LogAtom, fdme.data, pm, set(), self)
         self.assertRaises(TypeError, LogAtom, fdme.data, pm, b"", self)
-        LogAtom(b"data", pm, None, None)
+        LogAtom(b"data", None, None, None)
 
 
 if __name__ == '__main__':
