@@ -85,7 +85,7 @@ class ByteStreamLineAtomizer(StreamAtomizer):
             raise ValueError(msg)
         self.max_line_length = max_line_length
         if not isinstance(default_timestamp_path_list, list) or not all(isinstance(x, str) for x in default_timestamp_path_list):
-            msg = "parsing_model must be a list of strings!"
+            msg = "default_timestamp_path_list must be a list of strings!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         self.default_timestamp_path_list = default_timestamp_path_list
