@@ -17,6 +17,7 @@ from aminer.input.ByteStreamLineAtomizer import ByteStreamLineAtomizer
 from aminer.parsing.ModelElementInterface import ModelElementInterface
 from aminer.events.EventInterfaces import EventHandlerInterface
 
+
 class SimpleByteStreamLineAtomizerFactory(AtomizerFactory):
     """This factory just creates the same atomizer for each new resource.
 
@@ -49,8 +50,10 @@ class SimpleByteStreamLineAtomizerFactory(AtomizerFactory):
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         self.event_handler_list = event_handler_list
+        if default_timestamp_path_list is None:
+            default_timestamp_path_list = []
         if not isinstance(default_timestamp_path_list, list) or not all(isinstance(x, str) for x in default_timestamp_path_list):
-            msg = "parsing_model must be a list of strings!"
+            msg = "default_timestamp_path_list must be a list of strings!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         self.default_timestamp_path_list = default_timestamp_path_list
@@ -82,11 +85,6 @@ class SimpleByteStreamLineAtomizerFactory(AtomizerFactory):
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         self.use_real_time = use_real_time
-        if resource_name is not None and not isinstance(resource_name, (bytes, str)):
-            msg = "resource_name parameter must be of type string or bytes!"
-            logging.getLogger(DEBUG_LOG_NAME).error(msg)
-            raise TypeError(msg)
-        self.resource_name = resource_name
         self.printed_warning = False
         if not isinstance(continuous_timestamp_missing_warning, bool):
             msg = "continuous_timestamp_missing_warning parameter must be of type boolean!"
