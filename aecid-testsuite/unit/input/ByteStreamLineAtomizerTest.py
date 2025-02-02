@@ -284,7 +284,6 @@ class ByteStreamLineAtomizerTest(TestBase):
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], use_real_time=())
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], use_real_time=set())
 
-        self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], resource_name=b"Default")
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], resource_name=True)
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], resource_name=123)
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], resource_name=123.3)
@@ -303,7 +302,7 @@ class ByteStreamLineAtomizerTest(TestBase):
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], continuous_timestamp_missing_warning=())
         self.assertRaises(TypeError, ByteStreamLineAtomizer, fdme, [], [self.stream_printer_event_handler], 100, [], continuous_timestamp_missing_warning=set())
         ByteStreamLineAtomizer(fdme, [], [], 65536, ["path"], resource_name="test1")
-        ByteStreamLineAtomizer(fdme, None, [], 65536, [])
+        ByteStreamLineAtomizer(fdme, None, [], 65536, [], resource_name=b"test1")
 
 
 if __name__ == "__main__":

@@ -117,8 +117,8 @@ class ByteStreamLineAtomizer(StreamAtomizer):
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         self.use_real_time = use_real_time
-        if resource_name is not None and not isinstance(resource_name, str):
-            msg = "resource_name parameter must be of type string!"
+        if resource_name is not None and not isinstance(resource_name, (bytes, str)):
+            msg = "resource_name parameter must be of type string or bytes!"
             logging.getLogger(DEBUG_LOG_NAME).error(msg)
             raise TypeError(msg)
         self.resource_name = resource_name
