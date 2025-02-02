@@ -215,7 +215,7 @@ class EnhancedNewMatchPathValueComboDetector(NewMatchPathValueComboDetector):
             raise TypeError(msg)
         current_timestamp = event_data[0]
         self.known_values_dict[event_data[1]] = [current_timestamp, current_timestamp, 1]
-        return f"Allowlisted path(s) {", ".join(self.target_path_list)} with {event_data}."
+        return f"Allowlisted path(s) {', '.join(self.target_path_list)} with {event_data}."
 
     def log_statistics(self, component_name):
         """Log statistics of an AtomHandler.

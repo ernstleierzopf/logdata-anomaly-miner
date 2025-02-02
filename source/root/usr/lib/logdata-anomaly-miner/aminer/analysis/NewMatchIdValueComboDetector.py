@@ -260,7 +260,7 @@ class NewMatchIdValueComboDetector(
             raise TypeError(msg)
         if event_data not in self.known_values:
             self.known_values.append(event_data)
-        return f"Allowlisted path(s) {", ".join(self.target_path_list)} with {event_data}."
+        return f"Allowlisted path(s) {', '.join(self.target_path_list)} with {event_data}."
 
     def log_statistics(self, component_name):
         """Log statistics of an AtomHandler.
