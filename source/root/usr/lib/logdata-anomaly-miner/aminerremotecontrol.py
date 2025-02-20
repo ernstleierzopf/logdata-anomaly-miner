@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3 -BbbW all
 # -*- coding: utf-8 -*-
 """This tool allows to connect to a remote control socket, send requests and
 retrieve the responses. To allow remote use of this tool, e.g. via SSH
