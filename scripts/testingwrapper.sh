@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TESTDIR=/home/aminer/aecid-testsuite
+TESTDIR=/home/aminer/logdata-anomaly-miner/aecid-testsuite
 
 if [ $# -gt 0 ]
 then
