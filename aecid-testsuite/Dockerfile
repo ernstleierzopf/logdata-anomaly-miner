@@ -88,10 +88,6 @@ RUN PACK=$(find /usr/lib/python3/dist-packages -name posix1e.cpython\*.so) && FI
 # Add config
 ADD source/root/etc/aminer /etc/aminer
 
-# Copy the testsuite
-ADD .flake8 /home/aminer/logdata-anomaly-miner/aecid-testsuite/.flake8
-ADD .bandit /home/aminer/logdata-anomaly-miner/aecid-testsuite/.bandit
-
 RUN chown aminer.aminer -R /home/aminer \
     && ln -sf /usr/lib/logdata-anomaly-miner/aminer /home/aminer/logdata-anomaly-miner/aecid-testsuite/aminer \
     && ln -s /etc/aminer/template_config.py /home/aminer/logdata-anomaly-miner/aecid-testsuite/demo/aminer/template_config.py \
